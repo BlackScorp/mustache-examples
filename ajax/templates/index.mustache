@@ -1,0 +1,42 @@
+{{% BLOCKS }}
+{{< main }}
+
+{{$ content }}
+<div class="container">
+
+<ul class="list-group" id="rows">
+  {{#dataArray}}
+    {{>row}}
+  {{/dataArray}}
+</ul>
+
+<button class="btn btn-primary" id="load">Mehr laden</button>
+</div>
+<script id="row" type="x-tmpl-mustache">
+{{{rowTemplate}}}
+</script>
+{{/ content }}
+
+{{$script}}
+<script>
+
+
+let rowTemplate = document.getElementById('row').innerHTML;
+let rowList = document.getElementById('rows');
+
+document.getElementById('load').addEventListener('click',function(){
+
+  let dataRequest = new Request('/ajax/data.php');
+
+  fetch(dataRequest)
+  .then(response => response.json())
+  .then(data =>{
+    rowList.innerHTML += Mustache.render(rowTemplate,data);
+  });
+
+});
+
+</script>
+{{/script}}
+
+{{/ main }}

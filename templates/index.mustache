@@ -1,0 +1,29 @@
+{{% BLOCKS }}
+{{<layout}}
+
+{{$content2}}
+{{% FILTERS }}
+Hello  {{text|lower | !!}}
+{{#lower}}
+<strong>{{text}} FOO BAR</strong>
+{{/lower}}
+{{{html}}}
+{{^isTrue}}
+<hr/>
+Es ist true
+{{/isTrue}}
+{{data.foo.bar}}
+{{#zahlen}}
+  {{>zahl}}
+{{/zahlen}}
+{{#invliadArray}}
+  <span>{{.}}</span>
+{{/invliadArray}}
+{{! content }}
+
+{{/content2}}
+
+{{$content1}}
+<h1>Hallo Welt</h1>
+{{/content1}}
+{{/layout}}
